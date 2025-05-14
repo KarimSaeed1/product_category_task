@@ -1,0 +1,52 @@
+{
+  "name": "product-category-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "start": "rimraf ./dist && tsc && node ./dist/index.js",
+    "dev": "nodemon",
+    "local": "nodemon --watch ./src --ext ts,graphql,js --exec tsx ./src/index.ts dev",
+    "db:migrate": "npx prisma migrate dev --name init --create-only && npx prisma generate",
+    "db:generate": "npx prisma db push",
+    "db:push": "npx prisma db push",
+    "db:studio": "npx prisma studio"
+  },
+  "prisma": {
+    "schema": "./src/prisma/schema/"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": ".ts,.js, .graphql",
+    "exec": "npm run start dev"
+  },
+  "keywords": [],
+  "author": "karim-saeed",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.11.2",
+    "@graphql-tools/load-files": "^7.0.0",
+    "@graphql-tools/merge": "^9.0.8",
+    "@prisma/client": "^6.2.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "graphql": "^16.9.0",
+    "graphql-upload-ts": "^2.1.2",
+    "i18next-http-middleware": "^3.7.4",
+    "prisma": "^6.6.0",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^8.2.3",
+    "@types/express": "^5.0.0",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^22.9.0",
+    "nodemon": "^3.1.7",
+    "rimraf": "^6.0.1",
+    "tsx": "^4.19.2"
+  }
+}

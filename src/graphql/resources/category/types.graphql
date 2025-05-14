@@ -1,0 +1,43 @@
+type Category {
+id: Int!
+name: String!
+description: String
+products: [Product!]!
+}
+
+# --------------------- [ QUERY ] ---------------------
+
+type CategoryPagination implements Response {
+    total: Int
+    maxDepth: Int
+    page: Int
+    size: Int
+    totalPages: Int
+    data: [Category]
+}
+
+type Query {
+    category(id: Int!): Category
+    categories(params: Param): CategoryPagination
+}
+
+# --------------------- [ MUTATION ] ---------------------
+
+input CreateCategoryInput {
+    name: String!
+    description: String!
+}
+
+input UpdateCategoryInput {
+    id: Int!
+    name: String
+    description: String
+}
+
+type Mutation {
+    createCategory(data: CreateCategoryInput!): Category
+
+    updateCategory(data: UpdateCategoryInput!): Category
+
+    deleteCategory(id: Int!): Boolean
+}

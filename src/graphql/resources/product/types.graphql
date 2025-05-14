@@ -1,0 +1,46 @@
+type Product {
+    id: Int!
+    name: String!
+    price: Float!
+    category_id: Int!
+    category: Category
+}
+
+# --------------------- [ QUERY ] ---------------------
+
+type ProductPagination implements Response {
+    total: Int
+    maxDepth: Int
+    page: Int
+    size: Int
+    totalPages: Int
+    data: [Product]
+}
+
+type Query {
+    product(id: Int!): Product
+    products(params: Param): ProductPagination
+}
+
+# --------------------- [ MUTATION ] ---------------------
+
+input CreateProductInput {
+    name: String!
+    price: Float!
+    category_id: Int!
+}
+
+input UpdateProductInput {
+    id: Int!
+    name: String
+    price: Float
+    category_id: Int
+}
+
+type Mutation {
+    createProduct(data: CreateProductInput!): Product
+
+    updateCProduct(data: UpdateProductInput!): Product
+
+    deleteProduct(id: Int!): Boolean
+}

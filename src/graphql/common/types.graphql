@@ -1,0 +1,22 @@
+input Param {
+    search: String
+    sort: String
+    filter: String
+    page: Int
+    size: Int
+}
+
+interface Response {
+    total: Int
+    maxDepth: Int
+    page: Int
+    totalPages: Int
+    size: Int
+}
+
+# Scalars
+scalar Upload
+scalar Json
+scalar DateTime
+scalar Decimal
+scalar MultiType
